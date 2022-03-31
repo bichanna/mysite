@@ -1,0 +1,54 @@
+body { 
+    margin: 0;
+    padding: 0;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+a { 
+    color: #DE781F;
+    text-decoration: none; 
+}
+
+h1 { 
+    font-weight: normal;
+    border-bottom: 1px solid #bbb;
+    padding: 0 0 10px 0;
+}
+
+h2 {
+    font-weight: normal;
+    margin: 30px 0 0;
+}
+
+#content { 
+    float: left;
+    width: 70%;
+    padding: 0 0 0 30px; 
+}
+
+#postbody {
+    font-size: 20px;
+}
+
+p.date { 
+    color: #ccc;
+    font-family: georgia, serif;
+    font-size: 14px;
+}
+
+.pagination {
+    font-weight:bold;
+    margin:40px 0px;
+}
+
+.comment {
+    padding:10px;
+}
+.comment:nth-child(even) {
+    background:#efefef;
+}
+.comment .info {
+    font-weight:bold;
+    font-size:12px;
+    color:#666;
+}

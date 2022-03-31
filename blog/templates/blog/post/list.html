@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+
+{% load md_extras %}
+
+{% block content %}
+
+<h1>Blog</h1>
+{% for post in posts %}
+    <h2><a href="{{ post.slug }}">{{ post.title }}</a></h2>
+    <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
+    <div id="postbody">
+        {{ post.body | markdown | safe | truncatewords:30 | linebreaks }}
+    </div>
+{% endfor %}
+{% include "pagination.html" with page=posts %}
+{% endblock %}

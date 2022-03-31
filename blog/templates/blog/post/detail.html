@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+
+{% load md_extras %}
+
+{% block title %} {{ post.title }} {% endblock %}
+
+{% block content %}
+<h1>{{post.title}}<h1>
+<p class="date">Published {{ post.publish }} by {{ post.author }}</p>
+
+<div id="postbody">
+    {{ post.body | markdown | safe | linebreaks }}
+</div>
+
+{% endblock %}

@@ -1,14 +1,14 @@
 from django.template.defaultfilters import stringfilter
 from django import template
 
-import markdown as md
+import markdown
 
+register = template.Library()
 
-@template.Library().filter()
+@register.filter(name="markdown")
 @stringfilter
-def markdown(value: str):
-    """
-        Example: <p>{{ post.body | markdown | safe }}</p>
-    """
+def md(value: str):
+    """Example: <p>{{ post.body | markdown | safe }}</p>"""
     # For the extensions used, see https://python-markdown.github.io/extensions/fenced_code_blocks/
-    return md.markdown(value, extension=["markdown.extensions.fenced_code"])
+    # This does not need sanitation because only I write posts!
+    return markdown.markdown(value, extensions=["markdown.extensions.fenced_code"])
