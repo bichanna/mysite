@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Post
+from .models import Post, Comment
+from .forms import CommentForm
 
 class PostListView(View):
     """
@@ -32,5 +33,32 @@ class PostDetailView(View):
     """
     def get(self, request, post):
         post = get_object_or_404(Post, status="published", slug=post)
-        context = {"post": post}
+        comments = post.comments.filter(active=True)
+        comment_form = CommentForm()
+        
+        context = {
+            "post": post,
+            "comments": comments,
+            "new_comment": False,
+            "comment_form": comment_form,
+        }
+        return render(request, "blog/post/detail.html", context=context)
+    
+    def post(self, request, post):
+        post = get_object_or_404(Post, status="published", slug=post)
+        comments = post.comments.filter(active=True)
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.post = post
+            new_comment.save()
+        else:
+            pass
+        
+        context = {
+            "post": post,
+            "comments": comments,
+            "new_comment": new_comment,
+            "comment_form": comment_form,
+        }
         return render(request, "blog/post/detail.html", context=context)

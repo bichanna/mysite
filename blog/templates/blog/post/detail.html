@@ -5,11 +5,39 @@
 {% block title %} {{ post.title }} {% endblock %}
 
 {% block content %}
-<h1>{{post.title}}<h1>
+<h1><a href="./">{{post.title}}</a><h1>
 <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
 
 <div id="postbody">
     {{ post.body | markdown | safe | linebreaks }}
 </div>
+
+{% with comments.count as total_comments %}
+    <h2>
+        {{ total_comments }} comment{{ total_comments|pluralize }}
+    </h2>
+{% endwith %}
+
+{% if new_comment %}
+    <h2>Your comment has been added!</h2>
+{% else %}
+    <h2>Add a new comment</h2>
+    <form method="post"> {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Add comment</button>
+    </form>
+{% endif %}
+
+{% for comment in comments %}
+    <div class="comment">
+        <p class="info">
+            Comment {{ forloop.counter }} by {{ comment.name }}
+            {{ comment.created }}
+        </p>
+        {{ comment.body | linebreaks }}
+    </div>
+{% empty %}
+    <p>There are no comments... yet.</p>
+{% endfor %}
 
 {% endblock %}
