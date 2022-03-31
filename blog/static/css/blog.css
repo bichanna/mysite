@@ -9,6 +9,10 @@ a {
     text-decoration: none; 
 }
 
+pre {
+    background: #f0fbff;
+}
+
 h1 { 
     font-weight: normal;
     border-bottom: 1px solid #bbb;
@@ -27,7 +31,7 @@ h2 {
 }
 
 #postbody {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 p.date { 
@@ -42,10 +46,10 @@ p.date {
 }
 
 .comment {
-    padding:10px;
+    padding: 5px;
 }
 .comment:nth-child(even) {
-    background:#efefef;
+    background:#fafafa;
 }
 .comment .info {
     font-weight:bold;

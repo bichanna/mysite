@@ -8,8 +8,8 @@
 {% for post in posts %}
     <h2><a href="{{ post.slug }}">{{ post.title }}</a></h2>
     <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
-    <div id="postbody">
-        {{ post.body | markdown | safe | truncatewords:30 | linebreaks }}
+    <div>
+        {{ post.body | markdown | safe | truncatewords:5 | linebreaks }}
     </div>
 {% endfor %}
 {% include "pagination.html" with page=posts %}
