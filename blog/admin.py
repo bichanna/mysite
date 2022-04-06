@@ -27,7 +27,6 @@ class PostAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = [
         "name",
-        "email",
         "post",
         "created",
         "active",
@@ -37,4 +36,4 @@ class CommentAdmin(admin.ModelAdmin):
         "updated",
         "active",
     ]
-    search_fields = ["name", "email", "body"]
+    search_fields = ["name", "body"]

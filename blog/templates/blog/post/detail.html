@@ -14,15 +14,15 @@
 </div>
 
 {% with comments.count as total_comments %}
-    <h2>
+    <h4>
         {{ total_comments }} comment{{ total_comments|pluralize }}
-    </h2>
+    </h4>
 {% endwith %}
 
 {% if new_comment %}
-    <h2>Your comment has been added!</h2>
+    <h4>Your comment has been added!</h4>
 {% else %}
-    <h2>Add a new comment</h2>
+    <h5>Add a new comment</h5>
     <form method="post"> {% csrf_token %}
         {{ comment_form.as_p }}
         <button type="submit">Add comment</button>

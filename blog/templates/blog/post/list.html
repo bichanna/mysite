@@ -2,12 +2,14 @@
 
 {% load md_extras %}
 
+{% block title %} bichanna {% endblock %}
+
 {% block content %}
 
 <h1>bichanna's Blog (?)</h1>
 {% for post in posts %}
     <h2><a href="{{ post.slug }}">{{ post.title }}</a></h2>
-    <p class="date">Published {{ post.publish }} by {{ post.author }}</p>
+    <p class="date">Published on {{ post.publish }} by {{ post.author }}</p>
     <div>
         {{ post.body | markdown | safe | truncatewords:5 | linebreaks }}
     </div>
