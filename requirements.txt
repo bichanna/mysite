@@ -1,5 +1,6 @@
 asgiref==3.5.0
 Django==3.2.12
+django-taggit==2.1.0
 importlib-metadata==4.11.3
 Markdown==3.3.6
 python-decouple==3.6

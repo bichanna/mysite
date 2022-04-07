@@ -16,7 +16,6 @@ class PostAdmin(admin.ModelAdmin):
         "created",
         "author",
     ]
-    raw_id_fields = ["author"]
     ordering = ["status", "publish"]
     date_hierarchy = "publish"
     prepopulated_fields = {"slug": ["title"]}

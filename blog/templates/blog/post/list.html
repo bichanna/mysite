@@ -6,12 +6,21 @@
 
 {% block content %}
 
-<h1>bichanna's Blog (?)</h1>
+<h1><a href="/">bichanna's Blog (?)</a></h1>
+{% if tag %}
+    <h3>Posts tagged with <code>"{{ tag.name }}"</code></h3>
+{% endif %}
 {% for post in posts %}
-    <h2><a href="{{ post.slug }}">{{ post.title }}</a></h2>
+    <h2><a href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a></h2>
+    <p class="tags" style="font-size: 14px;">
+        Tags: 
+        {% for tag in post.tags.all %}
+            <a href="{% url 'blog:post_list_&_tag' tag.slug %}">{{ tag.name }}{% if not forloop.last %}, {% endif %}</a>
+        {% endfor %}
+    </p>
     <p class="date">Published on {{ post.publish }} by {{ post.author }}</p>
     <div>
-        {{ post.body | markdown | safe | truncatewords:5 | linebreaks }}
+        {{ post.body | markdown | safe | truncatewords:10 | linebreaks }}
     </div>
 {% endfor %}
 {% include "pagination.html" with page=posts %}
